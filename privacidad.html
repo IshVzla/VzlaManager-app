@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#7CD46B">
+  <title>Cómo cuidamos tus datos</title>
+  <meta name="description" content="Qué datos guardamos de nuestros clientes, para qué, y cómo pedir verlos, corregirlos o eliminarlos.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    /* Aviso de privacidad para los clientes del negocio. Página pública y liviana; los datos de contacto salen de la configuración. */
+    :root { --azul: #1D7A3E; --texto: #1D1F2B; --suave: #5B6070; --fondo: #F5F6FA; --borde: #D9DCE5; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: var(--fondo); color: var(--texto); line-height: 1.5; }
+    header { background: var(--azul); color: #fff; padding: 14px 16px; display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: 700; font-size: 17px; }
+    main { max-width: 640px; margin: 0 auto; padding: 20px 16px 40px; }
+    h1 { font-size: 24px; color: var(--azul); margin: 4px 0 8px; }
+    h2 { font-size: 18px; margin: 24px 0 6px; }
+    p, li { font-size: 16px; }
+    ul { padding-left: 20px; margin: 6px 0; }
+    .suave { color: var(--suave); font-size: 15px; }
+    .contacto { background: #fff; border: 1px solid var(--borde); border-left: 4px solid var(--azul); border-radius: 10px; padding: 12px 16px; margin: 12px 0; }
+    a { color: var(--azul); font-weight: 600; }
+  </style>
+</head>
+<body>
+  <header><span>Privacidad</span></header>
+  <main>
+    <h1>Cómo cuidamos tus datos</h1>
+    <p class="suave">Actualizado el 13 de octubre de 2026.</p>
+    <p>Para atenderte guardamos algunos datos de tu negocio. Aquí te contamos cuáles, para qué y cómo puedes pedir verlos, corregirlos o eliminarlos.</p>
+
+    <h2>Qué datos guardamos</h2>
+    <ul>
+      <li>Nombre del negocio, razón social, RIF y domicilio fiscal.</li>
+      <li>Persona de contacto, teléfono y correo.</li>
+      <li>Foto del local, solo si nos autorizas a tomarla.</li>
+      <li>Tus pedidos: notas, entregas y pagos (forma de pago, tasa del día y referencia).</li>
+    </ul>
+
+    <h2>Para qué los usamos</h2>
+    <p>Para tomar y entregar tus pedidos, emitir tus notas y registrar tus pagos. No los usamos para otros fines, no los vendemos ni los compartimos con terceros para publicidad.</p>
+
+    <h2>Dónde se guardan</h2>
+    <p>En un servicio de base de datos en la nube (Supabase), protegido con usuario y contraseña. Solo el personal del negocio puede verlos. Hacemos un respaldo diario cifrado.</p>
+    <p>La copia digital de tu nota (la que abre el código QR) muestra solo lo que va en tu nota, y solo la puede ver quien tenga ese enlace.</p>
+
+    <h2>Cuánto tiempo los guardamos</h2>
+    <p>Mientras seas cliente. Si pides eliminar tus datos, borramos tu nombre, RIF, domicilio, contacto y foto. Las notas se conservan por razones contables, pero sin tus datos personales.</p>
+
+    <h2>Tus derechos</h2>
+    <p>Puedes pedir en cualquier momento ver tus datos, corregirlos o eliminarlos. Para hacerlo, escríbele directamente a quien te atiende o al teléfono que aparece en tu nota.</p>
+  </main>
+</body>
+</html>

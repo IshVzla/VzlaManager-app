@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" role="img" aria-label="Bodega con cajas listas para entregar">
+  <!-- Ilustración original de VzlaManager (bodega, cajas y punto de entrega) -->
+  <ellipse cx="160" cy="200" rx="150" ry="12" fill="#245C3E"/>
+  <!-- Bodega -->
+  <rect x="34" y="78" width="132" height="120" rx="6" fill="#E7F4EC"/>
+  <rect x="34" y="78" width="132" height="14" fill="#C9E6D3"/>
+  <path d="M26 64h148l-8 28H34z" fill="#7CD46B"/>
+  <path d="M44 64l-6 28M70 64l-4 28M96 64l-2 28M122 64v28M148 64l2 28" stroke="#FFFFFF" stroke-width="9" opacity=".85"/>
+  <path d="M26 64h148" stroke="#17432C" stroke-width="3" stroke-linecap="round"/>
+  <rect x="52" y="112" width="40" height="86" rx="4" fill="#FFFFFF"/>
+  <circle cx="84" cy="156" r="3" fill="#17432C"/>
+  <rect x="106" y="112" width="44" height="34" rx="4" fill="#FFFFFF"/>
+  <path d="M106 129h44M128 112v34" stroke="#C9E6D3" stroke-width="3"/>
+  <!-- Cajas -->
+  <rect x="176" y="146" width="56" height="52" rx="4" fill="#F2CF68"/>
+  <rect x="236" y="158" width="44" height="40" rx="4" fill="#E9BE45"/>
+  <rect x="190" y="104" width="44" height="42" rx="4" fill="#E9BE45"/>
+  <path d="M204 146v14M253 158v12M212 104v14" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" opacity=".9"/>
+  <path d="M176 146h56M236 158h44M190 104h44" stroke="#C99A1E" stroke-width="2" opacity=".6"/>
+  <!-- Punto de entrega -->
+  <path d="M262 50c-17 0-29 12-29 28 0 21 29 50 29 50s29-29 29-50c0-16-12-28-29-28z" fill="#7CD46B"/>
+  <circle cx="262" cy="78" r="11" fill="#FFFFFF"/>
+  <path d="M256 78l4 4 8-9" fill="none" stroke="#17432C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Hojas -->
+  <path d="M292 198c-2-22 6-38 20-44-1 20-8 34-20 44z" fill="#7CD46B"/>
+  <path d="M292 198c-10-14-24-18-34-14 8 12 20 16 34 14z" fill="#4DBE3A"/>
+  <path d="M18 198c0-16 6-26 16-30 0 14-6 24-16 30z" fill="#4DBE3A"/>
+  <!-- Detalles -->
+  <circle cx="200" cy="40" r="4" fill="#EBBF10"/>
+  <circle cx="300" cy="120" r="3" fill="#EBBF10"/>
+  <circle cx="20" cy="110" r="3" fill="#7CD46B"/>
+</svg>
