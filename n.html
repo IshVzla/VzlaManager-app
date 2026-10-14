@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#177A2B">
+  <title>Nota de pedido</title>
+  <!-- Vista previa al compartir el enlace (WhatsApp ve lo mismo para todas las notas: no lee lo que va después de #). -->
+  <meta name="description" content="Copia digital de tu nota de pedido. Ábrela para verla y descargarla en PDF.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Nota de pedido">
+  <meta property="og:description" content="Copia digital de tu nota. Ábrela para verla y descargarla en PDF.">
+  <meta property="og:url" content="https://ishvzla.github.io/VzlaManager-app/n.html">
+  <meta property="og:image" content="https://ishvzla.github.io/VzlaManager-app/marca/vista-previa-nota.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Nota de pedido">
+  <meta property="og:locale" content="es_VE">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    /* Página pública y liviana que abre el QR de la nota: muestra la nota y permite descargarla en PDF. */
+    :root { --verde: #177A2B; --oscuro: #15390E; --texto: #18231A; --suave: #55605A; --fondo: #F4F7F3; --borde: #D5DDD4; --rojo: #B80016; --amarillo: #EBBF10; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: var(--fondo); color: var(--texto); }
+    header { background: var(--verde); color: #fff; padding: 14px 16px; font-weight: 700; font-size: 17px; text-align: center; border-bottom: 4px solid var(--amarillo); }
+    main { max-width: 520px; margin: 0 auto; padding: 16px; }
+    .hoja { background: #fff; border: 1px solid var(--borde); border-radius: 12px; padding: 16px; }
+    .neg { margin: 0; font-size: 18px; font-weight: 800; color: var(--oscuro); }
+    .neg-s { margin: 2px 0 0; font-size: 14px; color: var(--suave); }
+    .num { display: flex; justify-content: space-between; align-items: baseline; margin: 14px 0 8px; padding-top: 12px; border-top: 1px solid var(--borde); }
+    .num b { font-size: 20px; color: var(--rojo); }
+    .cli { margin: 0 0 12px; font-size: 15px; }
+    table { width: 100%; border-collapse: collapse; font-size: 15px; }
+    th { text-align: left; font-size: 13px; color: var(--suave); border-bottom: 1px solid var(--borde); padding: 6px 4px; }
+    td { padding: 8px 4px; border-bottom: 1px solid var(--borde); vertical-align: top; }
+    .der { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .tot td { border: 0; padding: 4px; }
+    .tot .total td { font-size: 18px; font-weight: 800; color: var(--verde); }
+    .estado { margin: 12px 0 0; padding: 10px 12px; border-radius: 10px; font-weight: 600; font-size: 15px; }
+    .estado.ok { background: #E6F2E7; color: #1B5E20; }
+    .estado.pend { background: #FCF4D2; color: #8A5300; }
+    .estado.anul { background: #FBE7E9; color: var(--rojo); }
+    .acciones { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
+    .btn { display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 10px; font: inherit; font-size: 17px; font-weight: 600; text-decoration: none; cursor: pointer; }
+    .prin { background: var(--verde); color: #fff; border: 0; }
+    .sec { background: #fff; color: var(--verde); border: 2px solid var(--verde); }
+    p.pie { font-size: 14px; color: var(--suave); text-align: center; line-height: 1.4; }
+    .msg { margin: 48px 8px; font-size: 17px; text-align: center; }
+    .error { color: var(--rojo); }
+    .cargando { width: 36px; height: 36px; margin: 64px auto; border: 3px solid var(--borde); border-top-color: var(--verde); border-radius: 50%; animation: g .8s linear infinite; }
+    @keyframes g { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <header>Nota de pedido</header>
+  <main id="m"><div class="cargando" aria-label="Cargando"></div></main>
+  <script src="vendor/qrcode.js"></script>
+  <script src="vendor/jspdf.umd.min.js"></script>
+  <script src="vendor/jspdf.plugin.autotable.min.js"></script>
+  <script type="module">
+    import { SUPABASE_URL, SUPABASE_KEY } from './config.js';
+    import { notaPdf, nombreArchivo } from './js/nota-pdf.js';
+    const m = document.getElementById('m');
+    const id = (location.hash.slice(1) || new URLSearchParams(location.search).get('n') || '').trim();
+    const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const mensaje = (t, clase = '') => { m.innerHTML = `<p class="msg ${clase}">${t}</p>`; };
+    const F2 = new Intl.NumberFormat('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const fechaVe = (d) => new Date(String(d).length === 10 ? d + 'T12:00:00' : d).toLocaleDateString('es-VE', { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'America/Caracas' }).replace(/\//g, '-');
+    (async () => {
+      if (!/^[0-9a-f-]{36}$/i.test(id)) return mensaje('Este enlace no corresponde a una nota.', 'error');
+      let n;
+      try {
+        const r = await fetch(`${SUPABASE_URL}/rest/v1/rpc/nota_publica`, {
+          method: 'POST', headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' }, body: JSON.stringify({ p_id: id }) });
+        if (!r.ok) throw new Error();
+        n = await r.json();
+      } catch (_) { return mensaje('No se pudo cargar la nota. Revisa tu conexión a internet y vuelve a abrir el enlace.', 'error'); }
+      if (!n) return mensaje('Esta nota todavía no está disponible: se subirá cuando el vendedor tenga señal. Vuelve a abrir el enlace más tarde.');
+      const neg = n.negocio || {};
+      const sim = neg.moneda === 'VES' ? 'Bs' : '$';
+      const d = (x) => `${sim} ${F2.format(Number(x) || 0)}`;
+      const num = String(n.numero ?? '').padStart(6, '0');
+      const estado = n.estado === 'anulado' ? `<p class="estado anul">Nota anulada${n.reemplazada_por ? ` · reemplazada por la N° ${String(n.reemplazada_por).padStart(6, '0')}` : ''}</p>`
+        : n.estado === 'entregado' ? `<p class="estado ok">Entregada el ${fechaVe(n.entregado_en)} · pagada con ${esc(n.forma_pago)}${n.tasa_bcv ? ` · Bs ${F2.format(n.monto_bs)} (tasa ${F2.format(n.tasa_bcv)})` : ''}</p>`
+        : '<p class="estado pend">Por entregar · se paga al recibir el pedido</p>';
+      document.title = `Nota N° ${num}${neg.nombre ? ' · ' + neg.nombre : ''}`;
+      m.innerHTML = `<div class="hoja">
+          <p class="neg">${esc(neg.razon_social || neg.nombre || '')}</p>
+          <p class="neg-s">${esc([neg.rif && 'RIF ' + neg.rif, neg.telefonos].filter(Boolean).join(' · '))}</p>
+          <div class="num"><span>${esc(n.ciudad || '')} · ${fechaVe(n.fecha)}</span><b>N° ${num}</b></div>
+          <p class="cli"><b>${esc(n.cliente?.razon_social || n.cliente?.nombre || '')}</b>${n.cliente?.rif ? `<br>RIF ${esc(n.cliente.rif)}` : ''}</p>
+          <table><thead><tr><th>Cant.</th><th>Descripción</th><th class="der">Total</th></tr></thead><tbody>
+            ${(n.items || []).map((i) => `<tr><td>${i.cantidad}</td><td>${esc(i.nombre)}<br><small>${d(i.precio)} c/u</small></td><td class="der">${d(i.subtotal)}</td></tr>`).join('')}
+          </tbody></table>
+          <table class="tot"><tbody>
+            <tr><td>Subtotal</td><td class="der">${d(n.subtotal)}</td></tr>
+            ${Number(n.iva_pct) ? `<tr><td>IVA ${F2.format(n.iva_pct).replace(',00', '')} %</td><td class="der">${d(n.iva)}</td></tr>` : ''}
+            <tr class="total"><td>Total</td><td class="der">${d(n.total)}</td></tr>
+          </tbody></table>
+          ${estado}
+        </div>
+        <div class="acciones">
+          <button class="btn prin" id="pdf">Descargar nota en PDF</button>
+        </div>
+        <p class="pie">${esc(neg.leyenda || 'Este documento no tiene valor fiscal.')}</p>
+        <p class="pie"><a href="privacidad.html">Cómo cuidamos tus datos</a></p>`;
+      document.getElementById('pdf').addEventListener('click', async () => {
+        const base64 = notaPdf(n, neg);
+        const bytes = Uint8Array.from(atob(base64), (c) => c.charCodeAt(0));
+        const archivo = new File([bytes], nombreArchivo(n), { type: 'application/pdf' });
+        if (navigator.canShare && navigator.canShare({ files: [archivo] }) && /iPhone|iPad|Android/i.test(navigator.userAgent)) {
+          try { await navigator.share({ files: [archivo], title: `Nota N° ${num}` }); return; } catch (e) { if (e?.name === 'AbortError') return; }
+        }
+        const a = document.createElement('a'); a.href = URL.createObjectURL(archivo); a.download = archivo.name;
+        document.body.appendChild(a); a.click(); a.remove();
+      });
+    })();
+  </script>
+</body>
+</html>
