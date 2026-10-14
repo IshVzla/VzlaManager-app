@@ -1,0 +1,81 @@
+/* Variables de diseño de VzlaManager. Ver DESIGN.md.
+   Identidad: verde hoja suave en la cabecera, contenido en una "hoja" verde menta con esquinas grandes,
+   tarjetas blancas redondeadas, campos con relleno y la letra Prompt (incluida en la app, funciona sin señal).
+   Colores derivados de los productos que distribuye el negocio (verde y amarillo), suavizados y con contraste ≥ 4,5:1
+   en todo texto. Tema claro por defecto; el oscuro se activa en Ajustes > Avanzado (html[data-tema="oscuro"]). */
+@font-face { font-family: "Prompt"; font-weight: 400; font-display: swap; src: url("fuentes/prompt-400.woff2") format("woff2"); }
+@font-face { font-family: "Prompt"; font-weight: 500; font-display: swap; src: url("fuentes/prompt-500.woff2") format("woff2"); }
+@font-face { font-family: "Prompt"; font-weight: 600; font-display: swap; src: url("fuentes/prompt-600.woff2") format("woff2"); }
+@font-face { font-family: "Prompt"; font-weight: 700; font-display: swap; src: url("fuentes/prompt-700.woff2") format("woff2"); }
+
+:root {
+  /* Verdes de la marca */
+  --hoja: #7CD46B;            /* cabecera y botón principal (texto --sobre-hoja encima: 6,7:1) */
+  --sobre-hoja: #123D27;
+  --hoja-suave: #DDF3D7;      /* pestaña activa, selección suave */
+  --hoja-borde: #8FD47F;      /* borde de lo seleccionado y de los botones secundarios */
+  --boton: #7CD46B;
+  --sobre-boton: #123D27;
+  --boton-presionado: #63BF52;
+  --oscuro: #17432C;          /* títulos, menú lateral, pantalla de ingreso (blanco encima: 11:1) */
+  --acento: #1D7A3E;          /* enlaces, íconos y cifras destacadas (5,4:1 con blanco) */
+  --acento-oscuro: #17432C;
+  --vivo: #4DBE3A;            /* detalles grandes, nunca texto */
+  --amarillo: #EBBF10;        /* acento de marca (siempre con texto oscuro encima) */
+  --rojo: #D8001A;
+  --rojo-texto: #B80016;
+  --verde: #1B5E20;           /* estados de éxito (entregado, pagado) */
+  --ambar: #8A5300;
+  --texto: #16281D;
+  --texto-suave: #4A6356;
+  --fondo: #E7F4EC;           /* la "hoja" de contenido (verde menta) */
+  --superficie: #FFFFFF;      /* tarjetas */
+  --campo: #F1F8F3;           /* relleno de los campos */
+  --borde-campo: #BCD6C5;
+  --borde: #D3E6DA;
+  --acento-suave: #DDF0E3;
+  --verde-suave: #E2F2E4;
+  --ambar-suave: #FBF0E0;
+  --rojo-suave: #FBE7E9;
+  --amarillo-suave: #FCF4D2;
+  /* Rellenos oscuros con texto blanco encima (avisos, insignias). Iguales en ambos temas. */
+  --relleno: #1D7A3E;
+  --sobre-relleno: #FFFFFF;
+  --rojo-relleno: #B80016;
+  --verde-relleno: #1B5E20;
+  --ambar-relleno: #8A5300;
+  --aviso-fondo: #17432C;
+  --papel: #FFFFFF;           /* nota, QR y PDF: siempre blanco */
+  --radio: 14px;              /* botones, campos */
+  --radio-g: 20px;            /* tarjetas y listas */
+  --radio-hoja: 28px;         /* esquinas de la hoja de contenido */
+  --toque: 48px;
+  --fuente: "Prompt", system-ui, Roboto, "Noto Sans", Arial, sans-serif;
+  color-scheme: light;
+}
+
+:root[data-tema="oscuro"] {
+  --hoja: #1E4A31;
+  --sobre-hoja: #C9F2BE;
+  --hoja-suave: #24442F;
+  --hoja-borde: #4E8F5E;
+  --oscuro: #0F2419;
+  --acento: #8FDB80;
+  --rojo-texto: #FF8F99;
+  --verde: #86CF8B;
+  --ambar: #F0B35A;
+  --texto: #E6F1E9;
+  --texto-suave: #A9BEB0;
+  --fondo: #111A15;
+  --superficie: #1A261F;
+  --campo: #22302A;
+  --borde-campo: #3D5246;
+  --borde: #2E4036;
+  --acento-suave: #1F3A29;
+  --verde-suave: #1E3522;
+  --ambar-suave: #3B2B12;
+  --rojo-suave: #40201F;
+  --amarillo-suave: #3A3210;
+  --aviso-fondo: #2B4A36;
+  color-scheme: dark;
+}
