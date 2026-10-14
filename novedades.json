@@ -1,0 +1,23 @@
+[
+  {
+    "titulo": "Todo funciona sin señal",
+    "puntos": [
+      "Sin señal ahora se puede hacer todo: tomar pedidos, entregar, cobrar, editar, anular, compras, abonos, clientes, productos, stock y fotos. Se sube solo, en orden, cuando vuelve la señal.",
+      "Al entregar, los productos agregados llevan su precio editable ahí mismo (si no tienen precio base, se pide antes de confirmar).",
+      "Nueva identidad visual, ciudad de la nota por GPS e impresión en hoja con original arriba y copia abajo."
+    ]
+  },
+  {
+    "titulo": "Primera versión",
+    "puntos": [
+      "Pedidos con precio sugerido por cliente y revisión de precios antes de generar la nota.",
+      "Nota en PDF con los datos del talonario, para enviar por WhatsApp o guardar.",
+      "Entrega y pago por separado: las notas quedan por cobrar hasta registrar el pago (con tasa BCV si es en bolívares).",
+      "Al entregar se pueden ajustar las cantidades: la nota mantiene su número y anota lo pedido y lo entregado.",
+      "Impresión en térmica Bluetooth (58 u 80 mm) y en hoja con original y copia.",
+      "Proveedor: compras, abonos y lo que se le debe; pedido consolidado de lo que hay que pedirle.",
+      "Inventario con lo que hay en bodega, lo comprometido y lo disponible.",
+      "Reportes: por entregar, pedido al proveedor, por cobrar, cobros del día y ventas."
+    ]
+  }
+]
