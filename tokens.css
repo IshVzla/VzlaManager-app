@@ -1,0 +1,54 @@
+/* Variables de diseño de VzlaManager. Ver DESIGN.md.
+   Colores tomados de los productos que distribuye el negocio (verde, amarillo plátano y rojo), ajustados para que
+   el texto se lea bien. Tema claro por defecto; el oscuro se activa en Ajustes > Avanzado (html[data-tema="oscuro"]). */
+:root {
+  --acento: #177A2B;          /* textos, bordes e íconos destacados (5,4:1 con blanco) */
+  --acento-oscuro: #15390E;   /* relleno presionado, menú del PC */
+  --vivo: #0DB80B;            /* detalles grandes, nunca texto chico */
+  --amarillo: #EBBF10;        /* acento de marca (siempre con texto oscuro encima) */
+  --rojo: #D8001A;
+  --rojo-texto: #B80016;
+  --verde: #1B5E20;           /* estados de éxito (entregado, pagado) */
+  --ambar: #8A5300;
+  --texto: #18231A;
+  --texto-suave: #55605A;
+  --fondo: #F4F7F3;
+  --superficie: #FFFFFF;
+  --borde: #D5DDD4;
+  --acento-suave: #E3F1E4;
+  --verde-suave: #E6F2E7;
+  --ambar-suave: #FBF0E0;
+  --rojo-suave: #FBE7E9;
+  --amarillo-suave: #FCF4D2;
+  /* Rellenos con texto blanco encima (barra, botón principal, selección). Iguales en ambos temas. */
+  --relleno: #177A2B;
+  --sobre-relleno: #FFFFFF;
+  --rojo-relleno: #B80016;
+  --verde-relleno: #1B5E20;
+  --ambar-relleno: #8A5300;
+  --aviso-fondo: #15390E;
+  --papel: #FFFFFF;           /* nota, QR y PDF: siempre blanco */
+  --radio: 10px;
+  --toque: 48px;
+  --fuente: system-ui, Roboto, "Noto Sans", Arial, sans-serif;
+  color-scheme: light;
+}
+
+:root[data-tema="oscuro"] {
+  --acento: #7FD48C;
+  --rojo-texto: #FF8F99;
+  --verde: #86CF8B;
+  --ambar: #F0B35A;
+  --texto: #E8EFE8;
+  --texto-suave: #A9B5AB;
+  --fondo: #101511;
+  --superficie: #1A211B;
+  --borde: #344036;
+  --acento-suave: #1F3523;
+  --verde-suave: #1E3522;
+  --ambar-suave: #3B2B12;
+  --rojo-suave: #40201F;
+  --amarillo-suave: #3A3210;
+  --aviso-fondo: #2B3A2D;
+  color-scheme: dark;
+}
