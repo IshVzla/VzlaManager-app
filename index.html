@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">  <!-- app interna: que los buscadores no la muestren -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#7CD46B">
+  <title>VzlaManager</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="VzlaManager">
+  <script src="js/tema.js"></script>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <header id="barra" class="barra"></header>
+  <div class="cinta-demo" aria-hidden="true">Modo demostración · datos de ejemplo</div>
+  <a id="cinta-red" class="cinta-red" href="#/pendientes" role="status" hidden></a>
+  <main id="vista" class="vista"></main>
+  <nav id="tabs" class="tabs" aria-label="Secciones">
+    <a class="tabs-marca" href="#/pedidos" aria-label="VzlaManager, inicio"><img src="marca/isotipo-color.svg" alt=""><span>VzlaManager</span></a>
+    <a href="#/pedidos" data-tab="pedidos"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 2h7l6 6v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm6 1.5V9h5.5zM8.5 13a1 1 0 0 0 0 2h7a1 1 0 0 0 0-2zm0 4a1 1 0 0 0 0 2h4a1 1 0 0 0 0-2z"/></svg><span>Pedidos</span></a>
+    <a href="#/clientes" data-tab="clientes"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="9" cy="7" r="4"/><path d="M2 21v-1a6 6 0 0 1 6-6h2a6 6 0 0 1 6 6v1z"/><path d="M16 3.3a4 4 0 0 1 0 7.4zM18 14.2A6 6 0 0 1 22 20v1h-4.3A8 8 0 0 0 18 14.2z"/></svg><span>Clientes</span></a>
+    <a href="#/nuevo" class="tab-nuevo" data-tab="nuevo" aria-label="Nuevo pedido o cotización"><span class="tab-nuevo-c"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span><span class="tab-nuevo-t">Nuevo</span></a>
+    <a href="#/inventario" data-tab="inventario"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l9 5-9 5-9-5z"/><path d="M3 9l8 4.5V22l-8-4.5zM13 13.5L21 9v8.5L13 22z"/></svg><span>Inventario</span></a>
+    <a href="#/cotizaciones" data-tab="cotizaciones" class="solo-grande"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 1.5V8h4.5zM12 10a1 1 0 0 0-1 1v.2a2.6 2.6 0 0 0 .4 5.1h1.2a.7.7 0 0 1 0 1.4H10a1 1 0 0 0 0 2h1v.3a1 1 0 0 0 2 0v-.3a2.7 2.7 0 0 0-.4-5.4h-1.2a.6.6 0 0 1 0-1.2H14a1 1 0 0 0 0-2h-1V11a1 1 0 0 0-1-1z"/></svg><span>Cotizaciones</span></a>
+    <a href="#/proveedores" data-tab="proveedor" class="solo-grande"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 6a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v3h3.5l3.5 4v4h-1.3a3 3 0 0 0-5.4 0H9.7a3 3 0 0 0-5.4 0H2z"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg><span>Proveedores</span></a>
+    <a href="#/reportes" data-tab="reportes" class="solo-grande"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg><span>Reportes</span></a>
+    <a href="#/ajustes" data-tab="ajustes" class="solo-grande"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10.3 2h3.4l.5 2.6 1.6.9 2.5-.9 1.7 2.9-2 1.7v1.9l2 1.7-1.7 2.9-2.5-.9-1.6.9-.5 2.6h-3.4l-.5-2.6-1.6-.9-2.5.9-1.7-2.9 2-1.7V9.2l-2-1.7 1.7-2.9 2.5.9 1.6-.9zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg><span>Ajustes</span></a>
+    <a href="#/mas" data-tab="mas" class="solo-celular"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2.2"/><circle cx="12" cy="12" r="2.2"/><circle cx="19" cy="12" r="2.2"/></svg><span>Más</span></a>
+    <div class="tabs-pie"><span id="tabs-usuario" class="tabs-usuario"></span></div>
+  </nav>
+  <script src="version.js"></script>
+  <script src="vendor/qrcode.js"></script>
+  <script src="vendor/supabase.js"></script>
+  <script src="vendor/jspdf.umd.min.js"></script>
+  <script src="vendor/jspdf.plugin.autotable.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
